@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>Sign-Up/Login Form</title>
+    <link href='/static/css/fonts.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/noty.css" />
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/facebook.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    
+    <style type="text/css">
+    .offline {
+      background-color: #eab0a7;
+    }
+    .online {
+      background-color: #84ffdd;
+    }
+    .dropdown-menu{
+      max-height:300px;
+      overflow-y: scroll;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- THE LOGIN/SIGNUP PAGE -->
+    <div id="main_form" class="form1" style="position: static;display: block">
+      <ul class="tab-group">
+        <li class="tab active"><a id="signup_tab" href="#signup">Sign Up</a></li>
+        <li class="tab"><a  id="login_tab" href="#login">Log In</a></li>
+      </ul>
+
+      <div class="tab-content">
+        
+        <div id="signup">
+          <h1>New User</h1>
+          <div class="field-wrap">
+            <label>
+              User Name<span class="req">*</span>
+            </label>
+            <input id="reg_user" type="text" required autocomplete="off"/>
+          </div>
+          <div class="field-wrap">
+            <label>
+              Set A Password<span class="req">*</span>
+            </label>
+            <input id="reg_pass" type="password"required autocomplete="off"/>
+          </div>
+          <button id="register_me" type="submit" class="button button-block main_button"/>Register</button>
+        </div>
+        
+        <div id="login">
+          <h1>Welcome Back!</h1>
+          <div class="field-wrap">
+            <label>
+              User Name<span class="req">*</span>
+            </label>
+            <input id="log_user" type="text"required autocomplete="off"/>
+          </div>
+          <div class="field-wrap">
+            <label>
+              Password<span class="req">*</span>
+            </label>
+            <input id="log_pass" type="password"required autocomplete="off"/>
+          </div>
+          <button id="login_me" class="button button-block main_button"/>Log In</button>
+        </div>
+        
+      </div>
+      
+      <ul style="text-align: right;margin-top: 10px;list-style-type: none;">
+        <!-- <li>
+          <a href="#" role="button" class="quit"><i class="glyphicon glyphicon-floppy-remove"></i> EXIT</a>
+        </li> -->
+        <li>
+          <a href="#" role="button" class="save_quit"><i class="glyphicon glyphicon-floppy-saved"></i> SAVE_DB_EXIT</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div id="blog" class="wrapper" style="position: static;display: none">
+      <div class="box">
+        <div class="row row-offcanvas">
+          <!-- main right col -->
+          <div class="column" id="main">
+            
+            <!-- top nav -->
+            <div class="navbar navbar-blue navbar-fixed-top" >
+              <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand logo">SFB</a>
+                <p class="navbar-text" style="font-weight: bold;">SOCKET FACEBOOK BLOG</p>
+              </div>
+              <nav class="collapse navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                  <li>
+                    <a id="post_message" href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
+                  </li>
+                  <li>
+                    <a href="#" role="button" id="logout"><i class="glyphicon glyphicon-off"></i> LOGOUT</a>
+                  </li>
+                  <!--   <li>
+                    <a href="#" role="button" class="quit"><i class="glyphicon glyphicon-floppy-remove"></i> EXIT</a>
+                  </li> -->
+                  <li>
+                    <a href="#" role="button" class="save_quit"><i class="glyphicon glyphicon-floppy-saved"></i> SAVE_DB_EXIT</a>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right"> <!-- style="padding-left: 15px;"> -->
+                  <li class="dropdown">
+                    <a id="notif_drop" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-globe"></i></a>
+                    <ul id="notif_dropdown" class="dropdown-menu" style="color:black">
+                      <li>No Notifications</li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="padding-right: 15px;">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
+                    <div class="dropdown-menu panel panel-default">
+                      <div class="panel-heading"><h4>My Details</h4></div>
+                      <div id="user_details" class="panel-body" style="color: black">
+
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          <!-- /top nav -->
+          
+          <div class="padding" style="padding-top: 60px;">
+            <div class="full col-sm-9" style="padding-top: 0px ">
+              <!-- content -->
+              <div class="row">
+                <!-- main col left -->
+                <div class="col-sm-2" style="padding: unset">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4>User List</h4>
+                    </div>
+                    <div class="panel-body">
+                      <div id="USERS_LIST" class="list-group">
+                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- main col right -->
+                <div id="main_blog" class="col-sm-10" style="padding-right: 2px">
+                </div>
+                <hr>               
+                
+              </div><!-- /col-9 -->
+            </div><!-- /padding -->
+          </div>
+          <!-- /main -->
+              
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--post modal-->
+    <div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            Post a message
+          </div>
+          <div class="modal-body" style="text-align: center">
+            <select class="options" id="user_selected" style="width:100%">
+            </select><br><br>
+            <form class="form center-block">
+              <div class="form-group">
+                <textarea id="send_message_content" class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div>
+              <button id="send_message" class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="userModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            User Details
+          </div>
+          <div id="userModal_body" class="panel-body">
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/socket.js"></script>
+    <script  src="/static/js/noty.js"></script>
+    <script  src="{{js_var}}"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/sha512.js"></script>
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('[data-toggle=offcanvas]').click(function() {
+          $(this).toggleClass('visible-xs text-center');
+          $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
+          $('.row-offcanvas').toggleClass('active');
+          $('#lg-menu').toggleClass('hidden-xs').toggleClass('visible-xs');
+          $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
+          $('#btnShow').toggle();
+        });
+      });
+    </script>
+    
+  </body>
+</html>
